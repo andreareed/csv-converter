@@ -7,6 +7,7 @@ class App extends Component {
   state = {
     error: null,
     preview: null,
+    filename: null,
   };
 
   onDrop = files => {
@@ -18,7 +19,10 @@ class App extends Component {
           console.log(error);
           this.setState({ error });
         } else {
-          this.setState({ preview: <pre>{JSON.stringify(response.body, null, '\t')}</pre> });
+          this.setState({
+            filename: response.body.filename,
+            preview: <pre>{JSON.stringify(response.body.preview, null, '\t')}</pre>,
+          });
         }
       });
   };
@@ -46,7 +50,7 @@ class App extends Component {
           <div>
             <h3>Preview</h3>
             {this.state.preview}
-            <a href="download.json" download>
+            <a href={`downloads/${this.state.filename}.json`} download>
               Download
             </a>
           </div>

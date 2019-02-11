@@ -4,6 +4,7 @@ const express = require('express');
 const multer = require('multer');
 const csv = require('csvtojson');
 const fs = require('fs');
+const moment = require('moment');
 
 const app = express();
 const upload = multer().single('csvFile');
@@ -17,11 +18,12 @@ app.post('/api/convert', upload, async (req, res) => {
       // for (let line of lines) {
       //   Do something with each line
       // }
-      fs.writeFile('public/download.json', JSON.stringify(lines), function(error) {
+      const filename = moment().toISOString();
+      fs.writeFile(`public/downloads/${filename}.json`, JSON.stringify(lines, null, 2), function(error) {
         if (error) {
           res.status(422).json({ error });
         }
-        res.status(200).json(lines[0]);
+        res.status(200).json({ filename, preview: lines[0] });
       });
     });
 });
