@@ -16,12 +16,11 @@ class App extends Component {
       .attach('csvFile', files[0])
       .end((error, response) => {
         if (error) {
-          console.log(error);
           this.setState({ error });
         } else {
           this.setState({
             filename: response.body.filename,
-            preview: <pre>{JSON.stringify(response.body.preview, null, '\t')}</pre>,
+            preview: <pre>{JSON.stringify(response.body.preview, null, 2)}</pre>,
           });
         }
       });
@@ -30,7 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <h1>CSV Converter</h1>
+        <h1>CSV To JSON</h1>
         <Dropzone onDrop={this.onDrop} accept="text/csv, application/vnd.ms-excel">
           {({ getRootProps, getInputProps, isDragActive }) => {
             return (
@@ -48,11 +47,11 @@ class App extends Component {
         {this.state.error}
         {this.state.preview && (
           <div>
+            <a href={`downloads/${this.state.filename}.json`} download>
+              » Download «
+            </a>
             <h3>Preview</h3>
             {this.state.preview}
-            <a href={`downloads/${this.state.filename}.json`} download>
-              Download
-            </a>
           </div>
         )}
       </div>
