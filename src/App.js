@@ -45,6 +45,12 @@ class App extends Component {
           }}
         </Dropzone>
         {this.state.error}
+        {!this.state.preview && (
+          <p>
+            Upload your CSV file here to convert it to JSON. Once the upload is complete, you will be able to view a
+            preview of the data and download the converted file if everything looks good!
+          </p>
+        )}
         {this.state.preview && (
           <div>
             <a href={`downloads/${this.state.filename}.json`} download>

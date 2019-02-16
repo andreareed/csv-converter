@@ -22,6 +22,7 @@ pre {
   background-color: #ddd;
   color: #333;
   padding: 20px;
+  font-size: 12px;
 }
 
 .wrapper {
@@ -37,6 +38,11 @@ pre {
 .wrapper > h1 {
   font-size: 2.5em;
   text-align: center;
+}
+
+.wrapper > p {
+  width: 300px;
+  max-width: 100vw;
 }
 
 a {
