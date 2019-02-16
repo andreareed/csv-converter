@@ -6,7 +6,7 @@ A quick and easy way to convert CSV files to JSON
 
 ## Getting Started
 
-Clone this repo and install dependencies with `npm install` or `yarn`. To start the app, run `nodemon` and (in a separate terminal) `yarn start` or `npm start`. Point your browser to `http://localhost:3000`.
+Clone this repo and install dependencies with `npm install`. Create the build using `npm run build` and then point your browser to `http://localhost:5250`.
 
 ## Editing the JSON Output
 
@@ -166,6 +166,8 @@ Our output now has everything we need:
   }
 }
 ```
+
+** Note: ** If you make changes to the code, you will need to run `npm run build` again or switch over to development mode to see your changes.
 
 ## Built With
 
