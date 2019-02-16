@@ -5,9 +5,32 @@ const multer = require('multer');
 const csv = require('csvtojson');
 const fs = require('fs');
 const moment = require('moment');
+const cron = require('node-cron');
 
 const app = express();
 const upload = multer().single('csvFile');
+
+cron.schedule('0 0 * * *', function() {
+  console.log('------------Running Cron Job------------');
+  fs.readdir(path.join(__dirname, '..', 'build', 'static', 'downloads'), async (err, files) => {
+    if (err) {
+      logger.log('Error getting files:', err);
+      return;
+    }
+
+    try {
+      for (let i = 0; i < files.length; ++i) {
+        fs.unlink(path.join(__dirname, '..', 'build', 'static', 'downloads', files[i]), err => {
+          if (err) throw err;
+          console.log(`${files[i]} file succesfully deleted`);
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  });
+});
+
 app.use(express.static(`${__dirname}/../build`));
 
 //API Endpoints
