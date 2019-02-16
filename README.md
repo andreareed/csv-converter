@@ -6,7 +6,7 @@ A quick and easy way to convert CSV files to JSON
 
 ## Getting Started
 
-Clone this repo and install dependencies with `npm install`. Create the build using `npm run build` and then point your browser to `http://localhost:5250`.
+Clone this repo and install dependencies with `npm install`. Create the build using `npm run build` and then run `nodemon`. Point your browser to `http://localhost:5250` to see the app.
 
 ## Editing the JSON Output
 
@@ -167,7 +167,9 @@ Our output now has everything we need:
 }
 ```
 
-** Note: ** If you make changes to the code, you will need to run `npm run build` again or switch over to development mode to see your changes.
+## Clearing Old Files
+
+Files are cleared automatically by a cron job that runs nightly at midnight. This can be adjusted if needed in `server/index.js`.
 
 ## Built With
 
