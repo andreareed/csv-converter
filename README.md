@@ -2,6 +2,10 @@
 
 A quick and easy way to convert CSV files to JSON
 
+[Demo](http://138.197.220.135:5250/)
+
+Need a CSV file to test it out?  [Click Here](https://s3-us-west-1.amazonaws.com/codereed/git-repo-images/sampleCSVFile.csv) 
+
 ![CSV To JSON Converter](https://s3-us-west-1.amazonaws.com/codereed/git-repo-images/csv-converter.png)
 
 ## Getting Started
