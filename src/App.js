@@ -53,7 +53,7 @@ class App extends Component {
         )}
         {this.state.preview && (
           <div>
-            <a href={`downloads/${this.state.filename}.json`} download>
+            <a href={`/static/downloads/${this.state.filename}.json`} download>
               » Download «
             </a>
             <h3>Preview</h3>

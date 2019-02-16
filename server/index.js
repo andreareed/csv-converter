@@ -19,11 +19,14 @@ app.post('/api/convert', upload, async (req, res) => {
       //   Do something with each line
       // }
       const filename = moment().toISOString();
-      fs.writeFile(`public/downloads/${filename}.json`, JSON.stringify(lines, null, 2), function(error) {
+      fs.writeFile(`${__dirname}/../build/static/downloads/${filename}.json`, JSON.stringify(lines, null, 2), function(
+        error
+      ) {
         if (error) {
           res.status(422).json({ error });
+        } else {
+          res.status(200).json({ filename, preview: lines[0] });
         }
-        res.status(200).json({ filename, preview: lines[0] });
       });
     });
 });
