@@ -11,9 +11,23 @@ class App extends Component {
   };
 
   onDrop = files => {
+    const file = files[0];
+
+    if (!file) {
+      this.setState({ error: 'Invalid File Type' });
+      return;
+    }
+
+    if (files.length > 1) {
+      this.setState({ error: 'Please upload only 1 file at a time' });
+      return;
+    }
+
+    this.setState({ error: null });
+
     request
       .post('/api/convert')
-      .attach('csvFile', files[0])
+      .attach('csvFile', file)
       .end((error, response) => {
         if (error) {
           this.setState({ error });
@@ -35,16 +49,12 @@ class App extends Component {
             return (
               <div {...getRootProps()} className={classNames('dropzone', { 'dropzone--isActive': isDragActive })}>
                 <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p>Drop files here...</p>
-                ) : (
-                  <p>Drag and drop files here, or click to select files to upload.</p>
-                )}
+                {isDragActive ? <p>Drop file here...</p> : <p>Drag and drop file here, or click to select a file.</p>}
               </div>
             );
           }}
         </Dropzone>
-        {this.state.error}
+        {this.state.error && <div className="error">{this.state.error}</div>}
         {!this.state.preview && (
           <p>
             Upload your CSV file here to convert it to JSON. Once the upload is complete, you will be able to view a

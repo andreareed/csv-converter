@@ -71,3 +71,9 @@ a {
   background-color: #fff;
   color: #333;
 }
+
+.error {
+  background-color: #f00;
+  padding: 8px;
+  margin-top: 20px;
+}
